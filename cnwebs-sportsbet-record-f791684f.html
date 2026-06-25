@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>竞彩网 — 站点介绍与使用说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fcead6 0%, #f9d6b0 60%, #f0c79a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.2rem 3rem;
+      line-height: 1.7;
+      color: #2d1f12;
+    }
+
+    .page-wrapper {
+      max-width: 760px;
+      width: 100%;
+      background: rgba(255, 250, 240, 0.70);
+      backdrop-filter: blur(3px);
+      border-radius: 48px 48px 32px 32px;
+      padding: 2rem 1.8rem 2.8rem;
+      box-shadow: 0 12px 28px rgba(140, 80, 30, 0.12);
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 1.2rem 0.8rem 2rem;
+      }
+      .page-wrapper {
+        padding: 1.6rem 1.2rem 2rem;
+        border-radius: 32px;
+      }
+    }
+
+    /* 卡片容器（内嵌卡片） */
+    .card {
+      background: #fffcf7;
+      border-radius: 28px;
+      padding: 1.8rem 1.8rem 1.8rem;
+      box-shadow: 0 6px 18px rgba(170, 100, 45, 0.08);
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:last-of-type {
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #4e2e18;
+      margin-top: 0.1rem;
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: 1.05rem;
+      color: #78593e;
+      margin-bottom: 0.4rem;
+      border-left: 4px solid #e5b281;
+      padding-left: 0.9rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 520;
+      color: #4d2f19;
+      margin: 1.6rem 0 0.8rem 0;
+      border-bottom: 2px solid #eedbc9;
+      padding-bottom: 0.3rem;
+    }
+
+    h2:first-of-type {
+      margin-top: 0.4rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      word-break: break-word;
+    }
+
+    .accent-link {
+      color: #a7602c;
+      font-weight: 500;
+      text-decoration: none;
+      background: #fef3e8;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      transition: background 0.15s, color 0.15s;
+      border: 1px solid #eacdb5;
+      display: inline-block;
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+
+    .accent-link:hover {
+      background: #e5cbb2;
+      color: #2f1b0b;
+    }
+
+    .highlight-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.4rem;
+      margin: 1.2rem 0 0.8rem;
+    }
+
+    .highlight-item {
+      flex: 1 1 180px;
+      background: #faf1e7;
+      padding: 0.9rem 1rem;
+      border-radius: 24px;
+      font-size: 0.95rem;
+      border: 1px solid #eddccb;
+    }
+
+    .highlight-item strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #6c4226;
+      margin-bottom: 0.3rem;
+    }
+
+    .scenario-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      background: #fef7ef;
+      padding: 1.2rem 1.4rem;
+      border-radius: 24px;
+      margin: 1rem 0 0.8rem;
+    }
+
+    .scenario-box span {
+      background: #fff1e2;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #5b3c25;
+      border: 1px solid #e8d4be;
+    }
+
+    .faq-item {
+      margin: 0.9rem 0;
+      padding-left: 0.2rem;
+    }
+
+    .faq-q {
+      font-weight: 530;
+      color: #55361e;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      color: #3e2d1e;
+      padding-left: 0.6rem;
+      border-left: 2px solid #dbb692;
+      margin-top: 0.2rem;
+    }
+
+    hr {
+      margin: 1.8rem 0 0.6rem;
+      border: 0;
+      border-top: 2px dashed #d6bc9f;
+      opacity: 0.5;
+    }
+
+    .footnote {
+      font-size: 0.9rem;
+      color: #6b5540;
+      text-align: center;
+      margin-top: 1.4rem;
+    }
+
+    .footnote a {
+      color: #7c5b3b;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+
+    .button-sim {
+      display: inline-block;
+      background: #efd9c4;
+      color: #3f2818;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 470;
+      font-size: 0.9rem;
+      border: none;
+      box-shadow: 0 2px 4px rgba(130, 70, 30, 0.06);
+    }
+
+    /* 克制强调 */
+    .note-tag {
+      display: inline-block;
+      background: #e8d5c0;
+      color: #392b1d;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      margin-right: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <!-- hero 区域 -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end;">
+      <div>
+        <h1>竞彩网</h1>
+        <div class="subhead">体育竞猜 · 信息整合 · 使用参考</div>
+      </div>
+      <div class="button-sim" style="margin-bottom: 0.4rem;">⚽ 赛事数据参考</div>
+    </div>
+
+    <!-- 卡片：站点概要 + 定位 -->
+    <div class="card">
+      <p style="margin-top: 0.2rem;">
+        <strong>竞彩网</strong> 是一个面向体育竞猜爱好者的信息型平台，提供赛事数据、赔率变动、赛程预告等综合参考内容。站点内容围绕足球、篮球等主流赛事展开，适合希望系统了解竞猜信息的使用者。
+      </p>
+      <p>
+        平台本身不直接进行投注或资金结算，而是聚焦于比赛信息聚合与基础分析工具。用户通过 <a href="https://cnwebs-sportsbet.com" class="accent-link">竞彩网</a> 了解赛事背景、历史交鋒以及实时指数变化，辅助自身判断。
+      </p>
+    </div>
+
+    <!-- 亮点卡片：关键特征 -->
+    <div class="card">
+      <h2>▎站点亮点</h2>
+      <div class="highlight-grid">
+        <div class="highlight-item">
+          <strong>多维数据</strong>
+          覆盖主流联赛与杯赛，提供欧赔、亚盘、大小球等多类参考。
+        </div>
+        <div class="highlight-item">
+          <strong>动态更新</strong>
+          比赛前与进行中实时刷新指数与让球变化，信息时效性较好。
+        </div>
+        <div class="highlight-item">
+          <strong>赛程整合</strong>
+          按日期、联赛分类展示，便于快速定位关注场次。
+        </div>
+      </div>
+      <p style="margin-top: 0.6rem;">
+        平台数据结构偏向简明，适合从初涉竞猜到有经验的使用者日常查阅。
+      </p>
+    </div>
+
+    <!-- 使用建议 / 场景 -->
+    <div class="card">
+      <h2>▎使用建议与典型场景</h2>
+      <p>根据多数访问者的反馈，以下场景能较好发挥 <a href="https://cnwebs-sportsbet.com" class="accent-link">竞彩网</a> 的价值：</p>
+      <div class="scenario-box">
+        <span>🏟️ 赛前信息收集</span>
+        <span>📊 对比多家赔率趋势</span>
+        <span>🧾 回顾历史交锋战绩</span>
+        <span>⏱️ 实时追踪指数波动</span>
+      </div>
+      <p>
+        建议将站点数据作为多维参考之一，结合球队状态、天气、伤病等公开信息综合使用。平台内提供的指数变动图能够辅助观察市场情绪变化，但任何数据都不应作为单一决策依据。
+      </p>
+    </div>
+
+    <!-- 可信但克制的说明 + FAQ 摘要 -->
+    <div class="card">
+      <h2>▎关于信息可靠性的说明</h2>
+      <p>
+        竞彩网的数据源主要来自公开赛事统计与第三方授权接口，平台尽力保证时效与准确，但无法做到100%无延迟或绝对无误。使用者应当了解：市场指数具有波动性，所有历史数据仅供参考，不构成任何形式的保证。
+      </p>
+      <p>
+        站点运营方不对用户基于平台数据做出的任何决策承担责任。理性参与、合理分配时间与资金，是健康使用竞猜信息的前提。
+      </p>
+
+      <hr>
+
+      <h2 style="margin-top: 0.2rem;">▎常见问题摘要</h2>
+      <div class="faq-item">
+        <div class="faq-q">问：竞彩网需要注册或付费吗？</div>
+        <div class="faq-a">浏览赛事数据、赔率列表等基础内容无需注册，不收取费用。部分高级筛选或历史统计可能需要简单登录，目前免费开放。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">问：数据更新频率如何？</div>
+        <div class="faq-a">主流赛事赛前每几分钟更新一次，临场阶段频率提高。如遇罕见延迟，建议刷新页面或稍后重试。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">问：是否包含所有赛事？</div>
+        <div class="faq-a">主要聚焦于欧洲、亚洲、美洲的热门联赛及杯赛，小众赛事覆盖有限，但核心赛事基本齐全。</div>
+      </div>
+      <hr style="margin-top: 1.4rem;">
+      <p style="font-size: 0.88rem; color: #6b4e37;">
+        <span class="note-tag">提示</span> 竞猜有风险，请根据自身情况合理运用信息，保持理性判断。
+      </p>
+    </div>
+
+    <!-- 脚注 / 再次自然链接（已在上文句子中出现2次，此处再嵌入一次） -->
+    <div class="footnote">
+      更多赛事信息，可前往 <a href="https://cnwebs-sportsbet.com">竞彩网</a> 浏览数据总览。
+    </div>
+    <div style="font-size: 0.75rem; color: #7a6553; text-align: center; margin-top: 0.3rem; opacity: 0.8;">
+      本页仅为介绍说明，不构成任何投注建议。
+    </div>
+
+  </div>
+</body>
+</html>
